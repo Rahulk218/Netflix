@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: Build,Analyze,scan
+=======
+name: Build, Analyze, scan
+>>>>>>> 336bfeb96bbc7ad4f7c69dcc33079ccb289f3cd8
 on:
   push:
     branches:
@@ -29,7 +33,11 @@ jobs:
            sudo apt-get install trivy -y
            #command to scan files
            trivy fs .
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 336bfeb96bbc7ad4f7c69dcc33079ccb289f3cd8
       - name: Docker build and push
         run: |
            #run commands to build and push docker images
@@ -37,5 +45,11 @@ jobs:
            docker tag netflix rahulk218/netflix:latest
            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
            docker push rahulk218/netflix:latest
+<<<<<<< HEAD
          env:
            DOCKER_CLI_ACI: 1
+=======
+        env:
+          DOCKER_CLI_ACI: 1
+           
+>>>>>>> 336bfeb96bbc7ad4f7c69dcc33079ccb289f3cd8
