@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 name: Build,Analyze,scan
-=======
-name: Build, Analyze, scan
->>>>>>> 336bfeb96bbc7ad4f7c69dcc33079ccb289f3cd8
 on:
   push:
     branches:
@@ -16,7 +12,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
       - name: Build and analyze with SonarQube
         uses: sonarsource/sonarqube-scan-action@master
         env:
@@ -25,31 +20,21 @@ jobs:
 
       - name: install trivy
         run: |
-           #install trivy
-           sudo apt-get install wget apt-transport-https gnupg lsb-release -y
-           wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-           echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
-           sudo apt-get update
-           sudo apt-get install trivy -y
-           #command to scan files
-           trivy fs .
-<<<<<<< HEAD
+          #install trivy
+          sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy -y
+          #command to scan files
+          trivy fs .    
 
-=======
-      
->>>>>>> 336bfeb96bbc7ad4f7c69dcc33079ccb289f3cd8
       - name: Docker build and push
         run: |
-           #run commands to build and push docker images
-           docker build --build-arg TMDB_V3_API_KEY=2451be897aff0665f0093c11691b1230 -t netflix .
-           docker tag netflix rahulk218/netflix:latest
-           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-           docker push rahulk218/netflix:latest
-<<<<<<< HEAD
-         env:
-           DOCKER_CLI_ACI: 1
-=======
+          #run commands to build and push docker images
+          docker build --build-arg TMDB_V3_API_KEY=<USE YOUR API KEY> -t netflix .
+          docker tag netflix sevenajay/netflix:latest
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push sevenajay/netflix:latest
         env:
-          DOCKER_CLI_ACI: 1
-           
->>>>>>> 336bfeb96bbc7ad4f7c69dcc33079ccb289f3cd8
+          DOCKER_CLI_ACI: 1    
